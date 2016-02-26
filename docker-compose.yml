@@ -1,0 +1,13 @@
+# A definition for docker-compose to boot containers for local development
+node:
+  build: node/
+  ports:
+    - "8080:8080"
+varnish:
+  build: varnish/
+  links:
+    - node
+  environment:
+    - HTTPS=off
+  ports:
+    - "80:80"
